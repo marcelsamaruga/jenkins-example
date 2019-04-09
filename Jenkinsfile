@@ -27,14 +27,8 @@ pipeline {
 		
 		stage('Test') {
             steps {
-                junit '**/target/*.xml' 
+				junit 'target/surefire-reports/*.xml'
             }
-			
-			post {
-				always {
-					junit '**/target/*.xml'
-				}
-			}
         }
 		
 		stage('Code Analysis') {
