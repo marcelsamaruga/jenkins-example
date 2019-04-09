@@ -20,14 +20,14 @@ pipeline {
 		
 		stage('Build') {
             steps {
-                sh 'mvn clean install'
-				archiveArtifacts artifacts: '**/target/*.war', fingerprint: true 
+                sh 'mvn clean package -DskipTest'
             }
         }
 		
 		stage('Test') {
             steps {
 				echo "Tests results"
+				sh 'mvn clean test'
 				junit '**/target/*.xml'
             }
         }
@@ -37,6 +37,12 @@ pipeline {
                 sh 'mvn -batch-mode -V -U -e checkstyle:checkstyle pmd:pmd pmd:cpd findbugs:findbugs'
             }
         }
+		
+		stage('Publish') {
+			steps {
+				archiveArtifacts artifacts: '**/target/*.war', fingerprint: true 
+			}
+		}
 		
 		stage('Deploy') {
             when {
@@ -50,6 +56,12 @@ pipeline {
             }
 
         }
+		
+		post {
+        always {
+            deleteDir()
+        }
+    }
 		
     }
 }
