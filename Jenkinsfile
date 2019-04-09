@@ -53,15 +53,7 @@ pipeline {
 			steps {
                 echo 'Build success'
             }
-			
-			post {
-				always {
-					mail to: marcel.costa@mastercard.com, subject: 'Build has finished'
-				}
-				failure {
-					mail to: marcel.costa@mastercard.com, subject: 'Build failed'
-				}
-			}
+
         }
 		
     }
