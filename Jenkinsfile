@@ -20,7 +20,7 @@ pipeline {
 		
 		stage('Build') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                sh 'mvn clean package'
 				archiveArtifacts artifacts: '**/target/*.war', fingerprint: true 
             }
         }
@@ -28,6 +28,7 @@ pipeline {
 		stage('Test') {
             steps {
 				echo "Tests results"
+				junit '**/target/*.xml'
             }
         }
 		
