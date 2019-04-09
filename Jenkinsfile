@@ -28,7 +28,7 @@ pipeline {
 		stage('Test') {
             steps {
 				echo "Tests results"
-				junit "test-results-unit.xml"
+				junit '**/target/*.xml'
             }
         }
 		
