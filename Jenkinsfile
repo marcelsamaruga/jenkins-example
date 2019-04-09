@@ -28,6 +28,8 @@ pipeline {
 		stage('Test') {
             steps {
 				echo "Tests results"
+				sh 'ln -s tests/test-results-unit.xml $WORKSPACE'
+				junit "test-results-unit.xml"
             }
         }
 		
