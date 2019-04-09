@@ -7,7 +7,9 @@ pipeline {
     
 	stages {
         stage('Info') {
-			echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}" 
+			steps {
+				echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}" 
+			}
 		}
 		
 		stage('Checkout SCM') {
