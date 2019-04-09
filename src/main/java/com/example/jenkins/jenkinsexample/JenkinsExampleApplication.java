@@ -8,6 +8,11 @@ public class JenkinsExampleApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(JenkinsExampleApplication.class, args);
+		
+		//TODO 
+		// warning
+		
+		String notUsedVar = "";
 	}
 
 }
