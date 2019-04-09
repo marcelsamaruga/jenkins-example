@@ -3,7 +3,13 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'mvn --version'
+                sh 'mvn clean package'
+            }
+        }
+		
+		stage('code analysis') {
+            steps {
+                sh 'mvn clean package checkstyle:checkstyle'
             }
         }
     }
